@@ -2,7 +2,7 @@ body{
 	height: 100%;
 	width: 100%;
 	font-family: 'PT Sans', sans-serif;
-	background-color: #252422;
+	background: url(img/idea.jpg);
 }
 .cNav{
 	background-color: #46494c; 

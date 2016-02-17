@@ -60,7 +60,7 @@
 			var hexo = $("#instaWrapper").html();
 			$("#instaWrapper").remove();
 			$("#images").append(hexo);
-			
+			hexo.unwrap();
 			$('.honeycombs').honeycombs();		
 			}
 		)};

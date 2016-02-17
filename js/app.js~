@@ -6,7 +6,8 @@ var api = {
 var app = {
 	json : undefined,
 	suggestions : undefined,
-	random_tags: undefined
+	random_tags: undefined,
+	loaded: undefined
 }
 
 var functions = {
@@ -28,7 +29,10 @@ var functions = {
 	},
 
 	appendImages: function(iO){
-		$("<div class='comb'><img data-url='"+iO.link+"' src='"+iO.images.standard_resolution.url+"'><span>"+iO.caption.from.full_name+"<br>Likes: "+iO.likes.count+"<br>Comments: "+iO.comments.count+"</span></div>").appendTo("#images");	
+		if(app.loaded == undefined){
+			$("<div class='comb'><img data-url='"+iO.link+"' src='"+iO.images.standard_resolution.url+"'><span>"+iO.caption.from.full_name+"<br>Likes: "+iO.likes.count+"<br>Comments: "+iO.comments.count+"</span></div>").appendTo("#images");	}else{
+			$("<div class='comb'><img data-url='"+iO.link+"' src='"+iO.images.standard_resolution.url+"'><span>"+iO.caption.from.full_name+"<br>Likes: "+iO.likes.count+"<br>Comments: "+iO.comments.count+"</span></div>").appendTo("#instaWrapper");
+		}
 	}
 
 }
