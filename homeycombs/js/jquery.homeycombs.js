@@ -26,11 +26,12 @@
                 $(element).find('.comb').wrapAll('<div id="instaWrapper" class="honeycombs-inner-wrapper"></div>');
                 $wrapper = $(element).find('.honeycombs-inner-wrapper');
                 
-                $(element).find('.comb').append('<div class="hex_l"></div>');
-                $(element).find('.hex_l').append('<div class="hex_r"></div>');
-                $(element).find('.hex_r').append('<div class="hex_inner"></div>');
+		
+                $(element).find('.comb').not(':has(.hex_l)').append('<div class="hex_l"></div>');
+                $(element).find('.hex_l').not(':has(.hex_r)').append('<div class="hex_r"></div>');
+                $(element).find('.hex_r').not(':has(.hex_inner)').append('<div class="hex_inner"></div>');
 
-                $(element).find('.hex_inner').append('<div class="inner_span"><div class="inner-text"></div></div>');
+                $(element).find('.hex_inner').not(':has(.inner_span)').append('<div class="inner_span"><div class="inner-text"></div></div>');
                 
                 num = 0;
                 
