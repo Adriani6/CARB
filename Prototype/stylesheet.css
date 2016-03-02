@@ -73,6 +73,7 @@ h1{
   text-align: center;
   padding: 10px 0;
   font-size: 25px;
+  
 }
 
 .menu-toggle a {
@@ -90,17 +91,25 @@ h1{
 }
 
 .insta-results{
-	margin-top:20px;
+	margin-top:30px;
+	padding-top:20px;
+	position: relative;
 	float:left;
-	padding-left: 20px;
+	padding-left: 25px;
 	width:220px;
 	height:220px;
 }
 
+ img:hover {
+  width: 240px;
+  height: 240px;
+transition: all ease 400ms;
+ }
+ 
 #image-result-container{
 padding-top:5%;
 margin:0 auto;
-width:65%;
+width:78%;
 height:auto;
 
 }
