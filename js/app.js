@@ -6,29 +6,71 @@ var api = {
 var app = {
 	json : undefined,
 	suggestions : undefined,
-	random_tags: undefined
+	random_tags: undefined,
+	mediaJson: undefined
 }
 
 var functions = {
 
 	start: function(query){
+		functions.loaderStart();
 		var callback = "https://api.instagram.com/v1/tags/"+query+"/media/recent?client_id="+api.client;
 		return $.ajax({
 			type: 'POST',
 			url: callback,
 			dataType: "jsonp",
-			success: function(data){app.json = data.data;}
+			success: function(data){
+				app.json = data.data;
+				app.json.push({'tag':query});
+			}
+		});
+	},
+
+	mediaQuery: function(id){
+		var callback = "https://api.instagram.com/v1/media/"+id+"?client_id="+api.client;
+		return $.ajax({
+			type: 'POST',
+			url: callback,
+			dataType: "jsonp",
+			success: function(data){
+				mediaJson = data.data;
+				console.log(data);
+			}
 		});
 	},
 	
-	iterate: function(json){
-		for(var i = 0; i < Object.keys(json).length; i++){
-			return json[i];
-		} 
+	loaderStart: function(){
+		 $("body").append("<span id='loader'><img src='img/loader.gif'>Loading..</span>");
+	},
+
+	loaderStop: function(){
+		 $("#loader").remove();
 	},
 
 	appendImages: function(iO){
-		$("<div class='comb'><img data-url='"+iO.link+"' src='"+iO.images.standard_resolution.url+"'><span>"+iO.caption.from.full_name+"<br>Likes: "+iO.likes.count+"<br>Comments: "+iO.comments.count+"</span></div>").appendTo("#images");	
+		$("<div class='comb'><img data-mediaId='"+iO.id+"' data-tag='"+app.json.tag+"' data-url='"+iO.link+"' src='"+iO.images.standard_resolution.url+"'><span>"+iO.caption.from.full_name+"<br>Likes: "+iO.likes.count+"<br>Comments: "+iO.comments.count+"</span></div>").appendTo("#images");	
 	}
+}
 
+var appWindow = {
+//Implement window pop ups, listeners etc.
+	open: function(){
+		$("#window").css('visibility', 'visible');
+	},
+	close: function(){
+		$("#window").css('visibility', 'hidden');
+		$("#window > .image > img").replaceWith("<img src='#'>");
+		$("#window > .details-bar > .details").html("");
+	},
+	loadData: function(mediaId){
+		functions.loaderStart();
+		var rO = functions.mediaQuery(mediaId);
+		
+		$.when(rO).done(function(){
+			var res = rO.responseJSON;
+			$("#window > .image > img").replaceWith("<img src='"+res.data.images.standard_resolution.url+"'>");
+			$("#window > .details-bar > .details").html("Likes: " + res.data.likes.count + " Comments: " + res.data.comments.count + " Tags: "+ res.data.tags.length + " People on Photo: "+res.data.users_in_photo.length+"<span id='goTo'><a href='"+res.data.link+"'>View Instagram Post</a></span>");
+			functions.loaderStop();
+		});
+	}
 }

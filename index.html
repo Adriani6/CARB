@@ -9,30 +9,30 @@
 	<meta name="author" content="Team CARB">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script src="homeycombs/js/jquery.homeycombs.js"></script> 
-	<script type="text/javascript">
-	</script>
-	<link rel="stylesheet" href="css/carb.css">
 	<link rel="stylesheet" href="css/foundation.min.css">
+	<link rel="stylesheet" type="text/css" href="css/carb.css" />
 	<link rel="stylesheet" type="text/css" href="homeycombs/css/homeycombs.css" />
-	<script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
+	<link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
+	
 
 	<script src="js/app.js"></script>
 	<script>
 		var q_num = 0;
-		var storage = new Firebase("https://incandescent-inferno-6873.firebaseio.com/");
+		//var storage = new Firebase("https://incandescent-inferno-6873.firebaseio.com/");
 		var f = functions.start();
 		var loaded = false;
 		
 		var g = $.when(f).done(function(){
 			
-			//console.log(app.json[0]);
+			console.log(app.json[0]);
 			for(var i = 0; i < 10; i++){
 				functions.appendImages(app.json[i]);
 			}	
 
 			var hexo = $(".combs");
 			if(hexo.parent().is("#instaWrapper")){hexo.unwrap();}
-			$('.honeycombs').honeycombs();	
+			$('.honeycombs').honeycombs();
+			functions.loaderStop();	
 		});
 			
 		var timeout = undefined;
@@ -45,25 +45,43 @@
 			});
 
 			$(document).on('click','#images > div > div',function(){
-//console.log(this);
-				goTo($(this).children("img").attr("data-url"));
+				//goTo($(this).children("img").attr("data-url"));
+				appWindow.open();
+				//console.log($(this).children("img").attr("data-mediaId"));
+				appWindow.loadData($(this).children("img").attr("data-mediaId"));
 	    		});
+
+			$(document).on('click','#window-close',function(){
+				appWindow.close();
+	    		});
+
 		});
 
 
 		function beginQuery(){
-			var f = functions.start($("#search").val());
-			var query = $.when(f).done(function(){
-				for(var i = 0; i < 10; i++){
-					functions.appendImages(app.json[i]);
-				}
-			var hexo = $("#instaWrapper").html();
-			$("#instaWrapper").remove();
-			$("#images").append(hexo);
+			var searchBox = $("#search").val();
 			
-			$('.honeycombs').honeycombs();		
+			var tags = searchBox.replace(",", " ").split(" ");
+			
+			for(var j = 0; j < tags.length; j++){
+				var tagVar = tags[j];
+				$("#searched_tags").append("<span><a href='#"+tagVar+"'>"+tagVar+"</a></span>");
+				
+				var f = functions.start(tagVar);
+				//Add tag to json. it doesn't work by parameter passing... 
+				var query = $.when(f).done(function(){	
+					for(var i = 0; i < 10; i++){
+						functions.appendImages(app.json[i]);
+					}
+					var hexo = $("#instaWrapper").html();
+					$("#instaWrapper").remove();
+					$("#images").append(hexo);
+					$('.honeycombs').honeycombs();
+					functions.loaderStop();							
+				});
+				
 			}
-		)};
+		};
 
 		function goTo(url){
 			window.location.href=url;
@@ -73,24 +91,28 @@
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 </head>
-<body style="background-color: #252422;">
-      <div class="row">
-	<div class="large-6 columns">
-		
+<body>
+	<ul class="menu vertical" style="position: fixed;">
+	</ul>
+	<div id="window">
+		<span class="image"><img src="#"></span>
+		<span id="window-close" class="fi-x" style="color: #C5C3C6;"></span>
+		<span class="details-bar">
+			<span class="details"></span>
+		</span>
+	</div>	
 		<div class="align-middle" >
-			<img src="img/carb_white.png" style="height: 150px;" />id=searcj
 			<img src="img/carb_white.png" style="height: 150px;" />
-			<label style="color: white;">Search
-		
-	      </label>
-		<input id="search" type="text" aria-describedby="passwordHelpText">
-	      <p class="help-text" style="color: white;">Enter a # tag to begin searching!</p>
+			<label style="color: white;">Search</label>
+			<input id="search" type="text" aria-describedby="passwordHelpText">
+	      	<p class="help-text">Enter a # tag to begin searching!</p>
+			<hr style="width: 100%; position: relative;" />
 		</div>
-	</div>
-      </div>
+		<div class="cContainer">
+			<div id="images" class="honeycombs">
 
-<div id="images" class="honeycombs">
+			</div>
 
-</div>
+		</div>
 </body>
 </html>
