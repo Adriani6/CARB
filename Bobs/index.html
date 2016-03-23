@@ -1,19 +1,18 @@
-<!doctype html>
-
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
     <meta charset="utf-8">
-
-    <title>Instagram Search Engine</title>
-    <meta name="description" content="Instagram Search Engine">
-    <meta name="author" content="Team CARB">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Insta Search</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="homeycombs/js/jquery.homeycombs.js"></script>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="stylesheet.css">
     <link rel="stylesheet" href="css/foundation.min.css">
     <link rel="stylesheet" type="text/css" href="css/carb.css" />
     <link rel="stylesheet" type="text/css" href="homeycombs/css/homeycombs.css" />
     <link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
-
 
     <script src="js/app.js"></script>
     <script>
@@ -87,34 +86,39 @@
             window.location.href=url;
         };
     </script>
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-</head>
-<>
-<nav class="menu">
-    <ul>
-        <a href="#">
-            <li>Option 1</li>
-        </a> <a href="#">
-        <li>Option 2</li>
-    </a> <a href="#">
-        <li>Option 3</li>
-    </a>
-    </ul>
-</nav>
 
+<body>
+<nav class="menu">
+  <ul>
+      <a href="#">
+          <li>Option 1</li>
+      </a> <a href="#">
+      <li>Option 2</li>
+  </a> <a href="#">
+      <li>Option 3</li>
+  </a>
+  </ul>
+</nav>
 <div class="menu-toggle"> <a href="#"><i class="fa fa-angle-double-down"></i></a> </div>
 <div class="title-search">
-    <h1>Insta Search</h1>
-    <input id="search" type="text" class ="focus" />
+  <h1>Insta Search</h1>
+    <input type="text" aria-describedby="passwordHelpText">
+    <p class="help-text">Enter a # tag to begin searching!</p>
+  <br>
 </div>
-
 <div class="cContainer">
-    <div id="images" class="honeycombs">
-    </div>
+    <div id="images" class="honeycombs"></div>
 </div>
 
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+      $(".menu-toggle a").click(function(){
+          $(".menu").slideToggle(700);
+      });
+  });
+</script>
 
 </body>
 </html>
