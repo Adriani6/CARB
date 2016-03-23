@@ -40,7 +40,7 @@ var functions = {
 	},
 	
 	loaderStart: function(){
-		 $("body").append("<span id='loader'><img src="img/loader.gif">Loading..</span>");
+		 $("body").append("<span id='loader'><img src='/img/loader.gif'>Loading..</span>");
 	},
 
 	loaderStop: function(){
