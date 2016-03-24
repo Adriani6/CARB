@@ -1,15 +1,15 @@
 @import url(http://fonts.googleapis.com/css?family=roboto);
 
 @font-face {
-	font-family: 'proximaNova';
-	src: url('fonts/proximanova-webfont.eot');
-	src: url('fonts/proximanova-webfont.eot?#iefix') format('embedded-opentype'),
-	url('fonts/proximanova-webfont.woff2') format('woff2'),
-	url('fonts/proximanova-webfont.woff') format('woff'),
-	url('fonts/proximanova-webfont.ttf') format('truetype'),
-	url('fonts/proximanova-webfont.svg#proxima_novaregular') format('svg');
-	font-weight: normal;
-	font-style: normal;
+    font-family: 'proximaNova';
+    src: url('fonts/proximanova-webfont.eot');
+    src: url('fonts/proximanova-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/proximanova-webfont.woff2') format('woff2'),
+         url('fonts/proximanova-webfont.woff') format('woff'),
+         url('fonts/proximanova-webfont.ttf') format('truetype'),
+         url('fonts/proximanova-webfont.svg#proxima_novaregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 html, body{
@@ -19,6 +19,64 @@ html, body{
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+
+}
+
+h1{
+  text-align:center;
+  
+  color:#FF0004;
+  font-size: 1.5em;
+  font-family: 'proximaNova';
+  padding-top:60px; 
+  letter-spacing: 25px;
+  font-weight:100;
+}
+
+.menu {
+  background: #a8a8a8;
+  display: none;
+  width: 100%;
+}
+
+.menu ul {
+  font-family: 'proximaNova','roboto', serif;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.menu ul li {
+  color: #fff;
+  font-size: 15px;
+  letter-spacing: 5px;
+  padding: 15px 0;
+  text-transform: uppercase;
+}
+
+.menu ul li:hover { 
+	background: #747474; 
+}
+
+.menu a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.menu-toggle {
+  background: none;
+  color: #747474;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 25px;
+  
+}
+
+.menu-toggle a {
+  text-decoration: none;
+  color: #747474;
 
 }
 .cNav{
@@ -53,15 +111,13 @@ html, body{
 
 #search > img {
 	display: block;
-
 	height: 125px;
 	margin: auto auto;
 }
 
 #images{
-	margin-top: 100px; !important
+	margin-top: 100px;
 }
-
 #window{
 	position: fixed;
 	height: 80%;
@@ -117,64 +173,4 @@ html, body{
 	margin: auto;
 	position: absolute;
 	top: 0; left: 0; bottom: 0; right: 0;
-}
-
-h1{
-	text-align:center;
-	color:#75d3e6;
-	font-size: 1.5em;
-	font-family: 'proximaNova';
-	padding-top:60px;
-	letter-spacing: 25px;
-	#text-shadow: 1px 1px 5px #666666;
-	font-weight:100;
-}
-
-.menu {
-	background: #a8a8a8;
-	display: none;
-	width: 100%;
-}
-
-.menu ul {
-	font-family: 'proximaNova','roboto', serif;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	text-align: center;
-}
-
-.menu ul li {
-	color: #fff;
-	font-size: 15px;
-	letter-spacing: 5px;
-	padding: 15px 0;
-	text-transform: uppercase;
-}
-
-.menu ul li:hover {
-	#background: #a8a8a8;
-	background: #747474;
-}
-
-.menu a {
-	text-decoration: none;
-	color: #fff;
-}
-
-.menu-toggle {
-	background: none;
-	#color: #a8a8a8;
-	color: #747474;
-	width: 100%;
-	text-align: center;
-	padding: 10px 0;
-	font-size: 25px;
-
-}
-
-.menu-toggle a {
-	text-decoration: none;
-	color: #747474;
-
 }
