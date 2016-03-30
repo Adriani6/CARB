@@ -15,6 +15,54 @@ html, body{
 	opacity: 0.6;
 	background-attachment: fixed;
 }
+.menu {
+  background: #a8a8a8;
+  display: none;
+  width: 100%;
+}
+
+.menu ul {
+  font-family: 'proximaNova','roboto', serif;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.menu ul li {
+  color: #fff;
+  font-size: 15px;
+  letter-spacing: 5px;
+  padding: 15px 0;
+  text-transform: uppercase;
+}
+
+.menu ul li:hover { 
+	background: #747474; 
+}
+
+.menu a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.menu-toggle {
+  background: none;
+  color: #747474;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 25px;
+  background-image: url("../img/dg.png");
+  opacity: 0.6;
+  
+}
+
+.menu-toggle a {
+  text-decoration: none;
+  color: #747474;
+
+}
 .cNav{
 	background-color: #46494c;
 	color:white;
@@ -112,8 +160,10 @@ html, body{
 }
 
 .navbar{
-	background-color: inherit;
+	background-color: #46494C;
 	border: 0;
+    display:none;
+
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -127,4 +177,59 @@ html, body{
 
 #navSearchBar{
 	display: none;
+
+}
+*{
+      box-sizing: border-box;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  margin-bottom: 6%;
+}
+.navbar-form {
+  width: auto;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-right: 0;
+  margin-left: 0;
+  border: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }

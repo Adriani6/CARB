@@ -1,9 +1,9 @@
 window.onscroll = function(){
-	if(document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-		$("#navSearchBar").css("display", "inline-block");
-        $(".navbar").css("background-color", "#46494C");
+	if(document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
+	    $("#navSearchBar").show();
+	    $(".navbar").show();
     } else {
-    	$("#navSearchBar").css("display", "none");
-        $(".navbar").css("background-color", "inherit");
+	    $("#navSearchBar").hide();
+	    $(".navbar").hide();
     }
 }
