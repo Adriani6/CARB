@@ -34,7 +34,6 @@ var functions = {
 			dataType: "jsonp",
 			success: function(data){
 				mediaJson = data.data;
-				console.log(data);
 			}
 		});
 	},

@@ -1,3 +1,5 @@
+// Change from cookies to Firebase.
+
 $(document).ready(function(){
 	function hasCookies(){
 		if(document.cookie)

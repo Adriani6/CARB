@@ -1,57 +1,130 @@
-<!DOCTYPE HTML>
-<html>
+<!doctype html>
+
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insta Search</title>
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheet.css">
+	<meta charset="utf-8">
+
+	<title>Instagram Search Engine</title>
+	<meta name="description" content="Instagram Search Engine">
+	<meta name="author" content="Team CARB">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script src="homeycombs/js/jquery.homeycombs.js"></script> 
+	<link rel="stylesheet" href="css/foundation.min.css">
+	<link rel="stylesheet" type="text/css" href="css/carb.css" />
+	<link rel="stylesheet" type="text/css" href="homeycombs/css/homeycombs.css" />
+	<link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+	
+
+	<script src="js/app.js"></script>
+	<script>
+		var q_num = 0;
+		//var storage = new Firebase("https://incandescent-inferno-6873.firebaseio.com/");
+		var f = functions.start();
+		var loaded = false;
+		
+		var g = $.when(f).done(function(){
+			
+			console.log(app.json[0]);
+			for(var i = 0; i < 10; i++){
+				functions.appendImages(app.json[i]);
+			}	
+
+			var hexo = $(".combs");
+			if(hexo.parent().is("#instaWrapper")){hexo.unwrap();}
+			$('.honeycombs').honeycombs();
+			functions.loaderStop();	
+		});
+			
+		var timeout = undefined;
+		$(document).ready(function(){
+			$( "#search" ).keyup(function() {
+				if(timeout != undefined || timeout != null || timeout != ""){clearTimeout(timeout);}
+				timeout = setTimeout(function(){
+					beginQuery();				
+				}, 2000);
+			});
+
+			$(document).on('click','#images > div > div',function(){
+				//goTo($(this).children("img").attr("data-url"));
+				appWindow.open();
+				//console.log($(this).children("img").attr("data-mediaId"));
+				appWindow.loadData($(this).children("img").attr("data-mediaId"));
+	    		});
+
+			$(document).on('click','#window-close',function(){
+				appWindow.close();
+	    		});
+
+		});
+		
+		$(document).ready(function() {
+            $(".menu-toggle a").click(function() {
+                $(".menu").slideToggle(700);
+            });
+        });
+
+
+		function beginQuery(){
+			var searchBox = $("#search").val();
+			
+			var tags = searchBox.replace(",", " ").split(" ");
+			
+			for(var j = 0; j < tags.length; j++){
+				var tagVar = tags[j];
+				$("#searched_tags").append("<span><a href='#"+tagVar+"'>"+tagVar+"</a></span>");
+				
+				var f = functions.start(tagVar);
+				//Add tag to json. it doesn't work by parameter passing... 
+				var query = $.when(f).done(function(){	
+					for(var i = 0; i < 10; i++){
+						functions.appendImages(app.json[i]);
+					}
+					var hexo = $("#instaWrapper").html();
+					$("#instaWrapper").remove();
+					$("#images").append(hexo);
+					$('.honeycombs').honeycombs();
+					functions.loaderStop();							
+				});
+				
+			}
+		};
+
+		function goTo(url){
+			window.location.href=url;
+		};		
+	</script>
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 </head>
 <body>
-<nav class="menu">
-  <ul>
-    <a href="#">
-    <li>Option 1</li>
-    </a> <a href="#">
-    <li>Option 2</li>
-    </a> <a href="#">
-    <li>Option 3</li>
-    </a>
-  </ul>
+	<nav class="menu">
+  	<ul>
+    	<a href="#"><li>Option 1</li></a>
+        <a href="#"><li>Option 2</li></a>
+        <a href="#"><li>Option 3</li></a>
+ 	</ul>
 </nav>
 <div class="menu-toggle"> <a href="#"><i class="fa fa-angle-double-down"></i></a> </div>
-<div class="title-search">
-	<h1>Insta Search</h1>
-	<input id="search" type="text" class ="focus">
-	<br>
-	<figure id="image-result-container">
-		<img src="images/image.png" alt="image_placeholder" class="insta-results">
-		<img src="images/image.png" alt="image_placeholder" class="insta-results">
-		<img src="images/image.png" alt="image_placeholder" class="insta-results">
-		<img src="images/image.png" alt="image_placeholder" class="insta-results">
-		<img src="images/image.png" alt="image_placeholder" class="insta-results">
-		
-		<img src="images/image.png" alt="image_placeholder" class="insta-results">
-		<img src="images/image.png" alt="image_placeholder" class="insta-results">
-		<img src="images/image.png" alt="image_placeholder" class="insta-results">
-		<img src="images/image.png" alt="image_placeholder" class="insta-results">
-		<img src="images/image.png" alt="image_placeholder" class="insta-results">
-		
-		<img src="images/image.png" alt="image_placeholder" class="insta-results">
-		<img src="images/image.png" alt="image_placeholder" class="insta-results">
+	<div id="window">
+		<span class="image"><img src="#"></span>
+		<span id="window-close" class="fi-x" style="color: #C5C3C6;"></span>
+		<span class="details-bar">
+			<span class="details"></span>
+		</span>
+	</div>	
+		<div class="align-middle" id="search" >
+			<h1>Insta Search</h1>
+			<input type="text" aria-describedby="passwordHelpText">
+	      	<p class="help-text">Enter a # tag to begin searching!</p>
+			<hr style="width: 100%; position: relative;" />
+		</div>
+		<div class="cContainer">
+			<div id="images" class="honeycombs">
 
-	</figure>
-</div>
+			</div>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
-<script>
-$(document).ready(function(){
-			$(".menu-toggle a").click(function(){ 
-				$(".menu").slideToggle(700);
-			});
-		});
-</script>
-
+		</div>
 </body>
 </html>

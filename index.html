@@ -7,16 +7,18 @@
 	<title>Instagram Search Engine</title>
 	<meta name="description" content="Instagram Search Engine">
 	<meta name="author" content="Team CARB">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script src="homeycombs/js/jquery.homeycombs.js"></script> 
-	<link rel="stylesheet" href="css/foundation.min.css">
-	<link rel="stylesheet" type="text/css" href="css/carb.css" />
 	<link rel="stylesheet" type="text/css" href="homeycombs/css/homeycombs.css" />
-	<link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/carb.css" />
 	
-
 	<script src="js/app.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<script>
+		// To Highlight certain tags, loop through data var and force to flip them with set opacity.
 		var q_num = 0;
 		//var storage = new Firebase("https://incandescent-inferno-6873.firebaseio.com/");
 		var f = functions.start();
@@ -35,13 +37,14 @@
 			functions.loaderStop();	
 		});
 			
-		var timeout = undefined;
 		$(document).ready(function(){
-			$( "#search" ).keyup(function() {
-				if(timeout != undefined || timeout != null || timeout != ""){clearTimeout(timeout);}
-				timeout = setTimeout(function(){
-					beginQuery();				
-				}, 2000);
+			$( "#search" ).keypress(function(args) {
+				if(args.which == 13){
+					beginQuery();
+					var tag = $("#search").val();
+					$("#searchedTags").append("<li><a href='#'>#"+ tag +"</a></li>");
+					$("#search").val("")
+				}
 			});
 
 			$(document).on('click','#images > div > div',function(){
@@ -92,8 +95,8 @@
   <![endif]-->
 </head>
 <body>
-	<ul class="menu vertical" style="position: fixed;">
-	</ul>
+	<div id="overlay"></div>
+	<!-- Prompt -->
 	<div id="window">
 		<span class="image"><img src="#"></span>
 		<span id="window-close" class="fi-x" style="color: #C5C3C6;"></span>
@@ -101,18 +104,62 @@
 			<span class="details"></span>
 		</span>
 	</div>	
-		<div class="align-middle" id="search" >
-			<img src="img/carb_white.png" style="height: 150px;" />
-			<label style="color: white;">Search</label>
-			<input type="text" aria-describedby="passwordHelpText">
-	      	<p class="help-text">Enter a # tag to begin searching!</p>
-			<hr style="width: 100%; position: relative;" />
+	<!-- End Prompt -->
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">InstaSearch.uk</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li><a href="#">Top</span></a></li>
+	        <li><a href="#">Featured</span></a></li>
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Searched # <span class="caret"></span></a>
+	          <ul id="searchedTags" class="dropdown-menu">
+
+	          </ul>
+	        </li>
+	      </ul>
+	      
+	      <ul id="navSearchBar" class="nav navbar-nav navbar-right">
+	        <form class="navbar-form navbar-left" role="search">
+	          <div class="form-group">
+	            <input type="text" class="form-control" placeholder="Search">
+	          </div>
+	          <button type="submit" class="btn btn-default">Submit</button>
+	        </form>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+		<div class="col-md-6 col-md-offset-3" style="margin-top: 10%; margin-bottom: 10%;">
+			<div class="form-group">
+			  <label class="control-label sr-only" for="inputGroupSuccess4">Input group with success</label>
+			  <div class="input-group">
+			    <span class="input-group-addon">#</span>
+			    <input type="text" class="form-control" id="search" style="width: 100%; height: 40px;">
+			  </div>
+			</div>	
 		</div>
-		<div class="cContainer">
-			<div id="images" class="honeycombs">
+			<div class="cContainer">
+				<div id="images" class="honeycombs">
+
+				</div>
 
 			</div>
+		
+	<script src="js/functions.js"></script>	
 
-		</div>
 </body>
 </html>
