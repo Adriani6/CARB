@@ -157,71 +157,74 @@ FB.init(
 });
 
 </script>
+    <div class="topPage">
+        <nav class="menu">
+            <ul>
+                <a href="#"><li>Options</li></a>
+                <a href="#"><li>Suggestions</li></a>
+                <a href="#" onclick="fb_login();"><li id="fblogin">Login</li></a>
+            </ul>
+        </nav>
 
-    <nav class="menu">
-        <ul>
-            <a href="#"><li>Options</li></a>
-            <a href="#"><li>Suggestions</li></a>
-            <a href="#" onclick="fb_login();"><li id="fblogin">Login</li></a>
-        </ul>
-    </nav>
+        <div class="menu-toggle"> <a href="#"><i class="fa fa-angle-double-down"></i></a> </div>
+        <div id="overlay"></div>
+    	<!-- Prompt -->
+    	<div id="window">
+    		<span class="image"><img src="#"></span>
+    		<span id="window-close" class="fi-x" style="color: #C5C3C6;"></span>
+    		<span class="details-bar">
+    			<span class="details"></span>
+    		</span>
+    	</div>	
+    	<!-- End Prompt -->
 
-    <div class="menu-toggle"> <a href="#"><i class="fa fa-angle-double-down"></i></a> </div>
-    <div id="overlay"></div>
-	<!-- Prompt -->
-	<div id="window">
-		<span class="image"><img src="#"></span>
-		<span id="window-close" class="fi-x" style="color: #C5C3C6;"></span>
-		<span class="details-bar">
-			<span class="details"></span>
-		</span>
-	</div>	
-	<!-- End Prompt -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">InstaSearch.uk</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Top</span></a></li>
+                        <li><a href="#">Featured</span></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Searched # <span class="caret"></span></a>
+                            <ul id="searchedTags" class="dropdown-menu"></ul>
+                        </li>
+                    </ul>
 
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">InstaSearch.uk</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="#">Top</span></a></li>
-                    <li><a href="#">Featured</span></a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Searched # <span class="caret"></span></a>
-                        <ul id="searchedTags" class="dropdown-menu"></ul>
-                    </li>
-                </ul>
-
-                <ul id="navSearchBar" class="nav navbar-nav navbar-right">
-                    <form class="navbar-form navbar-left" role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>   
-    <div class="col-md-6 col-md-offset-3" style="margin-top: 8%; margin-bottom: 5%;">
-        <div class="form-group">
-        	<h1 class="text-center" style="color:white;">InstaSearch.uk</h1>
-            <label class="control-label sr-only" for="inputGroupSuccess4">Input group with success</label>
-            <div class="input-group">
-                <span class="input-group-addon">#</span>
-                <input type="text" class="form-control" id="search" style="width: 100%; height: 40px;">
+                    <ul id="navSearchBar" class="nav navbar-nav navbar-right">
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>   
+        <div class="col-md-6 col-md-offset-3" style="margin-top: 8%; margin-bottom: 5%;">
+            <div class="form-group">
+            	<h1 class="text-center" style="color:white;">InstaSearch.uk</h1>
+                <label class="control-label sr-only" for="inputGroupSuccess4">Input group with success</label>
+                <div class="input-group">
+                    <span class="input-group-addon">#</span>
+                    <input type="text" class="form-control" id="search" style="width: 100%; height: 40px;">
+                </div>
             </div>
         </div>
+        <div class="arrow"></div>
     </div>
+
     <div class="cContainer">
         <div id="images" class="honeycombs">
         </div>

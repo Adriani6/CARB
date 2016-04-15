@@ -73,3 +73,30 @@ var appWindow = {
 		});
 	}
 }
+
+$(document).ready(function(){
+	function loop() {
+	    $('.arrow').animate({'bottom': '50'}, {
+	        duration: 1000, 
+	        complete: function() {
+	            $('.arrow').animate({bottom: 20}, {
+	                duration: 1000, 
+	                complete: loop});
+	    }});
+	}
+
+	loop();
+
+	$(function(){
+	  $(window).scroll(function(){
+	    var aTop = $(window).height() / 3;
+	    if($(this).scrollTop()>=aTop){
+	        $(".arrow").css("visibility", "hidden");
+	        // instead of alert you can use to show your ad
+	        // something like $('#footAd').slideup();
+	    }else{
+	    	$(".arrow").css("visibility", "visible");
+	    }
+	  });
+	});
+})
