@@ -15,10 +15,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/foundation.min.css">
     <link rel="stylesheet" type="text/css" href="css/carb.css" />
-	<link rel="stylesheet" type="text/css" href="homeycombs/css/homeycombs.css" />
-    <link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
-
-
+	<link rel="stylesheet" type="text/css" href="homeycombs/css/homeycombs.css"/>
+    <link rel="stylesheet" href="foundation-icons/foundation-icons.css"/>
 
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <script src="http://connect.facebook.net/en_US/all.js"></script>
@@ -45,9 +43,11 @@
 			$('.honeycombs').honeycombs();
 			functions.loaderStop();	
 		});
-			
+
+        // Listens for the user to keypress the 'Enter' button
 		$(document).ready(function(){
 			$( "#search" ).keypress(function(args) {
+                // If user pushes enter, the query on instagram begins
 				if(args.which == 13){
 					beginQuery();
 					var tag = $("#search").val();
@@ -56,6 +56,7 @@
 				}
 			});
 
+            //Loads the gathers images on the image grid
 			$(document).on('click','#images > div > div',function(){
 				//goTo($(this).children("img").attr("data-url"));
 				appWindow.open();
@@ -63,11 +64,13 @@
 				appWindow.loadData($(this).children("img").attr("data-mediaId"));
 	    		});
 
+            // Closes the connection
 			$(document).on('click','#window-close',function(){
 				appWindow.close();
 	    		});
-
 		});
+
+        // Enables the three item menu to be hidden until the user clicks the double downward arrow at the top center
 		$(document).ready(function () {
 		    $(".menu-toggle a").click(function () {
 		        $(".menu").slideToggle(700);
