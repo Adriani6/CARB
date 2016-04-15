@@ -20,6 +20,8 @@
 
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <script src="http://connect.facebook.net/en_US/all.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+    <script src="js/firebaseDatabase.js"></script>
 
 
 	<script src="js/app.js"></script>
@@ -27,7 +29,8 @@
 	<script>
 		// To Highlight certain tags, loop through data var and force to flip them with set opacity.
 		var q_num = 0;
-		//var storage = new Firebase("https://incandescent-inferno-6873.firebaseio.com/");
+
+
 		var f = functions.start();
 		var loaded = false;
 		
@@ -114,47 +117,21 @@
 <body>
 <div id="fb-root"></div>
 <script>
-
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5&appId=484574588397458";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
-function fb_login(){
-    FB.login(function(response) {
-        if (response.authResponse) {
-            access_token = response.authResponse.accessToken; //get access token
-            user_id = response.authResponse.userID; //get FB UID
-
-            FB.api('/me', function(response) {
-                user_email = response.email; //get user email
-          		// you can store this data into your database             
-            });
-
+    var ref = new Firebase("https://incandescent-inferno-6873.firebaseio.com/alanisawesome");
+    ref.authWithOAuthPopup("facebook", function(error, authData) {
+        if (error) {
+            console.log("Login Failed!", error);
         } else {
-            //user hit cancel button
-        }
-    }, {
-        scope: 'publish_stream,email'
-    });
-}
-(function() {
-    var e = document.createElement('script');
-    e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
-    e.async = true;
-    document.getElementById('fb-root').appendChild(e);
-}());
+            console.log("Authenticated successfully with payload:", authData);
 
-FB.init(
-{
-    appId  : 484574588397458,
-    status : true, // check login status
-    cookie : true, // enable cookies to allow the server to access the session
-    xfbml  : true  // parse XFBML
-});
+            ref.once("value", function(snapshot) {
+                var data = snapshot.val();
+                var json = data.toArray();
+                console.log(json);
+            })
+
+        }
+    });
 
 </script>
     <div class="topPage">
