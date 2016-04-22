@@ -17,20 +17,20 @@
     <link rel="stylesheet" type="text/css" href="css/carb.css" />
 	<link rel="stylesheet" type="text/css" href="homeycombs/css/homeycombs.css"/>
     <link rel="stylesheet" href="foundation-icons/foundation-icons.css"/>
+    <!--FONTS-->
+    <link href='https://fonts.googleapis.com/css?family=Josefin+Slab:700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <!---END--->
 
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <script src="http://connect.facebook.net/en_US/all.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
     <script src="js/firebaseDatabase.js"></script>
-
-
 	<script src="js/app.js"></script>
 	
 	<script>
 		// To Highlight certain tags, loop through data var and force to flip them with set opacity.
 		var q_num = 0;
-
-
 		var f = functions.start();
 		var loaded = false;
 		
@@ -80,6 +80,18 @@
 		    });
 		});
 
+        // Moves the images to the top when the user clicks the arrow
+        $(document).ready(function () {
+            $("#weeArrow").click(function() {
+                $('html, body').animate({
+                            scrollTop: $(".cContainer").offset().top }, 'slow');
+                $('.cContainer').css({
+                    'margin-top': '200px'
+                });
+            });
+        });
+
+
 
 		function beginQuery(){
 			var searchBox = $("#search").val();
@@ -108,7 +120,9 @@
 
 		function goTo(url){
 			window.location.href=url;
-		};		
+		};
+
+
 	</script>
   <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -117,8 +131,10 @@
 <body>
 <div id="fb-root"></div>
 <script>
+    // Script for the Firebase database connection. This is run under Adrian's login
     var ref = new Firebase("https://incandescent-inferno-6873.firebaseio.com/alanisawesome");
     ref.authWithOAuthPopup("facebook", function(error, authData) {
+        // Console logs to help the dev to see if it worked or not
         if (error) {
             console.log("Login Failed!", error);
         } else {
@@ -132,7 +148,6 @@
 
         }
     });
-
 </script>
     <div class="topPage">
         <nav class="menu">
@@ -145,6 +160,7 @@
 
         <div class="menu-toggle"> <a href="#"><i class="fa fa-angle-double-down"></i></a> </div>
         <div id="overlay"></div>
+
     	<!-- Prompt -->
     	<div id="window">
     		<span class="image"><img src="#"></span>
@@ -168,7 +184,7 @@
                     <a class="navbar-brand" href="#">InstaSearch.uk</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div class="collapse-navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li><a href="#">Top</span></a></li>
                         <li><a href="#">Featured</span></a></li>
@@ -188,10 +204,11 @@
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
-        </nav>   
+        </nav>
+
         <div class="col-md-6 col-md-offset-3" style="margin-top: 8%; margin-bottom: 5%;">
             <div class="form-group">
-            	<h1 class="text-center" style="color:white;">InstaSearch.uk</h1>
+            	<h1 class="text-center">INSTASEARCH.</h1>
                 <label class="control-label sr-only" for="inputGroupSuccess4">Input group with success</label>
                 <div class="input-group">
                     <span class="input-group-addon">#</span>
@@ -199,15 +216,16 @@
                 </div>
             </div>
         </div>
-        <div class="arrow"></div>
+        <div class="arrow" id="weeArrow"></div>
     </div>
 
+    <!-- Div class for the honeycombs-->
     <div class="cContainer">
         <div id="images" class="honeycombs">
         </div>
     </div>
 		
-	<script src="js/functions.js"></script>	
+	<script src="js/functions.js"></script>
 
 </body>
 </html>
