@@ -1,3 +1,4 @@
+/* Settings some background properties & forcing the page to be max its size */
 html, body {
     height: 100%;
     width: 100%;
@@ -6,29 +7,37 @@ html, body {
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
-
+/* Konami code styling (Corries image)*/
 #lolz{
     bottom: 0;
     position: fixed;
     z-index: 9999;
-    left: 0;
+    right: 0;
+    display: none;
 }
-
+/* Konami Code Snoop Dog image */
+#snoop{
+    position: fixed;
+    left: 0;
+    z-index: 9999;
+    display: none;
+}
+/* Top page section height */
 .topPage {
     height: 100%;
 }
-
+/* Replacing the H1 bootstrap tag */
 h1 {
     color: white;
     /*  */
     font-family: 'Montserrat', sans-serif;
     /*font-size:78px;*/
-
 }
-
+/* Custom nav */
 nav {
     font-family: 'Montserrat', sans-serif;
 }
+/* Bouncing arrow */
 .arrow {
     position: fixed;
     bottom: 20px;
@@ -36,10 +45,11 @@ nav {
     margin-left: -20px;
     width: 40px;
     height: 40px;
+    /* base64 arrow image code */
     background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0yOTMuNzUxLDQ1NS44NjhjLTIwLjE4MSwyMC4xNzktNTMuMTY1LDE5LjkxMy03My42NzMtMC41OTVsMCwwYy0yMC41MDgtMjAuNTA4LTIwLjc3My01My40OTMtMC41OTQtNzMuNjcyICBsMTg5Ljk5OS0xOTBjMjAuMTc4LTIwLjE3OCw1My4xNjQtMTkuOTEzLDczLjY3MiwwLjU5NWwwLDBjMjAuNTA4LDIwLjUwOSwyMC43NzIsNTMuNDkyLDAuNTk1LDczLjY3MUwyOTMuNzUxLDQ1NS44Njh6Ii8+DQo8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMjIwLjI0OSw0NTUuODY4YzIwLjE4LDIwLjE3OSw1My4xNjQsMTkuOTEzLDczLjY3Mi0wLjU5NWwwLDBjMjAuNTA5LTIwLjUwOCwyMC43NzQtNTMuNDkzLDAuNTk2LTczLjY3MiAgbC0xOTAtMTkwYy0yMC4xNzgtMjAuMTc4LTUzLjE2NC0xOS45MTMtNzMuNjcxLDAuNTk1bDAsMGMtMjAuNTA4LDIwLjUwOS0yMC43NzIsNTMuNDkyLTAuNTk1LDczLjY3MUwyMjAuMjQ5LDQ1NS44Njh6Ii8+DQo8L3N2Zz4=);
     background-size: contain;
 }
-
+/* Background overlay */
 #overlay {
     position: fixed;
     width: 100%;
@@ -48,13 +58,13 @@ nav {
     opacity: 0.6;
     background-attachment: fixed;
 }
-
+/* nav bar on scroll */
 .menu {
     background: #a8a8a8;
     display: none;
     width: 100%;
 }
-
+/* Modifying bootstrap nav elements */
 .menu ul {
     font-family: 'Josefin Slab', serif;
     list-style: none;
@@ -62,7 +72,7 @@ nav {
     padding: 0;
     text-align: center;
 }
-
+/* Modifying bootstrap nav elements */
 .menu ul li {
     color: #fff;
     font-size: 15px;
@@ -70,16 +80,16 @@ nav {
     padding: 15px 0;
     text-transform: uppercase;
 }
-
+/* Modifying bootstrap nav (on hover) elements */
 .menu ul li:hover {
     background: #747474;
 }
-
+/* Modifying bootstrap nav a elements */
 .menu a {
     text-decoration: none;
     color: #fff;
 }
-
+/* Modifying bootstrap mobile nav elements */
 .menu-toggle {
     background: none;
     color: #747474;
@@ -91,52 +101,34 @@ nav {
     opacity: 0.6;
 
 }
-
+/* Modifying bootstrap mobile link nav elements */
 .menu-toggle a {
     text-decoration: none;
     color: #747474;
 }
-
-.cNav {
-    background-color: #46494c;
-    color: white;
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    font-size: 20px;
-}
-
-.cNav > .title {
-    margin-left: 15px;
-    background-color: #46494c;
-    line-height: 50px;
-    color: #1985a1;
-    font-size: 20px;
-"
-}
-
+/* Container(Section) for honeycombs*/
 .cContainer {
     width: 100%;
     height: 100%;
 }
-
+/* Search inputbox */
 #search {
     width: 40%;
     right: 0;
     left: 0;
     margin: auto auto;
 }
-
+/* Search # */
 #search > img {
     display: block;
     height: 125px;
     margin: auto auto;
 }
-
+/* Honecombs section */
 #images {
     margin-top: 100px;  !important
 }
-
+/* Image enlargment window */
 #window {
     position: fixed;
     height: 80%;
@@ -151,14 +143,14 @@ nav {
     right: 0;
     border: 1px solid black;
 }
-
+/* Image enlargment window, X position */
 #window > #window-close {
     float: right;
     margin-right: 5px;
     position: relative;
     top: 0;
 }
-
+/* Image enlargment window, image position */
 #window > .image > img {
     max-width: 100%;
     max-height: 100%;
@@ -169,7 +161,7 @@ nav {
     bottom: 0;
     right: 0;
 }
-
+/* Image enlargment window, details bar position & style */
 #window > .details-bar {
     height: 50px;
     background-color: black;
@@ -178,19 +170,19 @@ nav {
     position: absolute;
     opacity: 0.5;
 }
-
+/* Image enlargment window, details position & style */
 #window > .details-bar > .details {
     margin-left: 15px;
     color: white;
     line-height: 50px;
     font-size: 15px;
 }
-
+/* Image enlargment window, url position & style */
 #window > .details-bar > .details > #goTo {
     float: right;
     margin-right: 15px;
 }
-
+/* Loading animation position */
 #loader {
     width: 100%;
     height: 100%;
@@ -202,7 +194,7 @@ nav {
     bottom: 0;
     right: 0;
 }
-
+/* Loading animation image position */
 #loader > img {
     margin: auto;
     position: absolute;
@@ -211,7 +203,7 @@ nav {
     bottom: 0;
     right: 0;
 }
-
+/* Overriding bootstrap navbar styles */
 .navbar {
     background-color: #46494C;
     border: 0;
@@ -222,17 +214,23 @@ nav {
 .navbar-default .navbar-nav > li > a {
     color: #fff;
     font-size: 18px;
+    line-height: 30px;
 }
 
 .navbar-default .navbar-brand {
     color: #fff;
+    line-height: 30px;
+}
+
+.navbar-default < #navSearchBar{
+    line-height: 30px;
 }
 
 #navSearchBar {
     display: none;
 
 }
-
+/* Squared corners not round (Overriding bootstrap) */
 * {
     box-sizing: border-box;
 }

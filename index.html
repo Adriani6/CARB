@@ -8,54 +8,71 @@
 	<meta name="description" content="Instagram Search Engine">
 	<meta name="author" content="Team CARB">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <!---Jquery-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
+    <!---END Jquery-->
+    <!---Konami code-->
     <script src="js/konamicode.js"></script>
+    <!---Honeycombs, modified library-->
 	<script src="homeycombs/js/jquery.homeycombs.js"></script> 
+    <!---Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!---END Bootstrap-->
+    <!---Our stylesheet-->
     <link rel="stylesheet" type="text/css" href="css/carb.css" />
+    <!---Honeycombs stylesheet-->
 	<link rel="stylesheet" type="text/css" href="homeycombs/css/homeycombs.css"/>
     <!--FONTS-->
     <link href='https://fonts.googleapis.com/css?family=Josefin+Slab:700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
-    <!---END-->
-
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <!---END FONTS-->
+    <!-- Facebook API -->
     <script src="http://connect.facebook.net/en_US/all.js"></script>
+    <!-- Firebase API -->
     <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+    <!-- Database class -->
     <script src="js/firebaseDatabase.js"></script>
+    <!-- App.js, Instagram communication -->
 	<script src="js/app.js"></script>
-
-    <script src="js/functions.js"></script>
   <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 </head>
 <body>
+<!-- Facebook API Div-->
 <div id="fb-root"></div>
-    <div class="topPage">
+    <!-- Start of the front, top page section. -->
+    <section class="topPage">
+        <!-- Main navbar -->
         <nav class="menu">
             <ul>
-                <a href="#"><li>Options</li></a>
-                <a href="#"><li>Suggestions</li></a>
+                <a href="#"><li id="fullName">You're not logged in!</li></a>
+                <a href="#" class="suggestions"><li>Suggestions</li></a>
                 <a href="#" onclick="fb_login();"><li id="fblogin">Login</li></a>
             </ul>
         </nav>
 
         <div class="menu-toggle"> <a href="#"><i class="glyphicon glyphicon-menu-down"></i></a> </div>
+        <!-- background overlay, adds a pattern to orginal image and makes it darker. -->
         <div id="overlay"></div>
 
     	<!-- Prompt -->
     	<div id="window">
     		<span class="image"><img src="#"></span>
-    		<span id="window-close" class="fi-x" style="color: #C5C3C6;"></span>
+            <!-- close button -->
+    		<span id="window-close" class="glyphicon glyphicon-remove" style="color: #C5C3C6;"></span>
+            <!-- post details bar -->
     		<span class="details-bar">
+                <!-- post details holder -->
     			<span class="details"></span>
     		</span>
     	</div>	
     	<!-- End Prompt -->
 
+        <!-- nav bar, only visible when scrolling -->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -68,11 +85,11 @@
                     </button>
                     <a class="navbar-brand" href="#">InstaSearch.uk</a>
                 </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
+                
                 <div class="collapse-navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li><a href="#">Top</span></a></li>
-                        <li><a href="#">Featured</span></a></li>
+                        <li><a href="#" class="suggestions">Featured</span></a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Searched # <span class="caret"></span></a>
                             <ul id="searchedTags" class="dropdown-menu"></ul>
@@ -82,7 +99,7 @@
                     <ul id="navSearchBar" class="nav navbar-nav navbar-right">
                         <form class="navbar-form navbar-left" role="search">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Search">
+                                <input type="text" id="navSearch" class="form-control" placeholder="Search">
                             </div>
                             <button type="submit" class="btn btn-default">Submit</button>
                         </form>
@@ -90,27 +107,35 @@
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
+        <!-- Front, Top page -->
         <div class="col-md-6 col-md-offset-3" style="margin-top: 8%; margin-bottom: 5%;">
-        <div id="lolz"></div>
+        <!-- Konami Code images, important! -->
+        <img src='img/corrieLolSoz.gif' id='lolz' alt='corrie' height='200px' width='300px'/>
+        <img src="img/snoop.gif" id="snoop" />
+        <!-- End of Konami code stuff -->
             <div class="form-group">
+                <!-- Text Logo-->
             	<h1 class="text-center">INSTASEARCH.</h1>
                 <label class="control-label sr-only" for="inputGroupSuccess4">Input group with success</label>
                 <div class="input-group">
+                    <!-- Input bar-->
                     <span class="input-group-addon">#</span>
                     <input type="text" class="form-control" id="search" style="width: 100%; height: 40px;">
                 </div>
             </div>
         </div>
+        <!-- Bouncing arrow-->
         <div class="arrow" id="weeArrow"></div>
-    </div>
+    </section>
 
-    <!-- Div class for the honeycombs-->
-    <div class="cContainer">
-        <div id="images" class="honeycombs">
-        </div>
-    </div>
-		
+    <!-- Section which gets pushed down 100% height the screen -->
+    <section class="cContainer">
+        <!-- Section for the honeycombs-->
+        <section id="images" class="honeycombs">
+        </section>
+    </section>
 
-
+	<!-- Loading functions.js last.-->
+	<script src="js/functions.js"></script>
 </body>
 </html>
