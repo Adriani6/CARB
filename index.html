@@ -123,6 +123,26 @@
 			window.location.href=url;
 		};
 
+        // Script for the Firebase database connection. This is run under Adrian's login
+        var ref = new Firebase("https://incandescent-inferno-6873.firebaseio.com/alanisawesome");
+        ref.authWithOAuthPopup("facebook", function(error, authData) {
+            // Console logs to help the dev to see if it worked or not
+            if (error) {
+                console.log("Login Failed!", error);
+            } else {
+                console.log("Authenticated successfully with payload:", authData);
+
+                ref.once("value", function(snapshot) {
+                    var data = snapshot.val();
+                    var array = Object.keys(data).map(key => data[key]);
+                    console.log(array[0].full_name);
+                })
+
+            }
+        });
+
+
+
 
 	</script>
   <!--[if lt IE 9]>
@@ -131,25 +151,6 @@
 </head>
 <body>
 <div id="fb-root"></div>
-<script>
-    // Script for the Firebase database connection. This is run under Adrian's login
-    var ref = new Firebase("https://incandescent-inferno-6873.firebaseio.com/alanisawesome");
-    ref.authWithOAuthPopup("facebook", function(error, authData) {
-        // Console logs to help the dev to see if it worked or not
-        if (error) {
-            console.log("Login Failed!", error);
-        } else {
-            console.log("Authenticated successfully with payload:", authData);
-
-            ref.once("value", function(snapshot) {
-                var data = snapshot.val();
-                    var array = Object.keys(data).map(key => data[key]);
-                    console.log(array[0].full_name);   
-            })
-
-        }
-    });
-</script>
     <div class="topPage">
         <nav class="menu">
             <ul>
@@ -159,7 +160,7 @@
             </ul>
         </nav>
 
-        <div class="menu-toggle"> <a href="#"><i class="fa fa-angle-double-down"></i></a> </div>
+        <div class="menu-toggle"> <a href="#"><i class="glyphicon glyphicon-menu-down"></i></a> </div>
         <div id="overlay"></div>
 
     	<!-- Prompt -->
@@ -226,7 +227,7 @@
         </div>
     </div>
 		
-	<script src="js/functions.js"></script>
+
 
 </body>
 </html>

@@ -1,12 +1,8 @@
 /**
  * Created by bobmac on 15/04/2016.
  */
-
 var storage = undefined;
-
 var userID = undefined;
-
-
 
 var Database = {
     newDatabase: function(id){
