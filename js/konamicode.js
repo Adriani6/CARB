@@ -37,7 +37,7 @@ document.addEventListener('keydown', function(e) {
 
 function DoSomething() {
     var result = document.getElementById("lolz");
-    result.innerHTML = "<img src='img/corrieLolSoz.gif' alt='corrie' height='200px' width='300px'/>";
+    result.innerHTML = "<img src='img/corrieLolSoz.gif' id='corrieDaKing' alt='corrie' height='200px' width='300px'/>";
 
     //var img = document.createElement('img');
     //img.src = "images/corrieLolSoz.gif";

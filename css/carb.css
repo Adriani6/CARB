@@ -7,6 +7,12 @@ html, body {
     background-attachment: fixed;
 
 }
+#lolz{
+    bottom: 0;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+}
 
 .topPage {
     height: 100%;
