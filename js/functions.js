@@ -86,7 +86,7 @@ $(document).ready(function(){
 		}
 	});
 
-	//Loads the gathers images on the image grid
+	//Loads the gathered images on the image grid
 	$(document).on('click','#images > div > div',function(){
 		//goTo($(this).children("img").attr("data-url"));
 		appWindow.open();

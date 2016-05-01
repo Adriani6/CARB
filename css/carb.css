@@ -14,6 +14,8 @@ html, body {
     z-index: 9999;
     right: 0;
     display: none;
+    height: auto;
+    width: 300px;
 }
 /* Konami Code Snoop Dog image */
 #snoop{
@@ -33,6 +35,11 @@ h1 {
     font-family: 'Montserrat', sans-serif;
     /*font-size:78px;*/
 }
+/* Resizes the main logo when max screensize is 300px*/
+@media (max-width: 300px) {
+    h1{font-size: 28px;}
+}
+
 /* Custom nav */
 nav {
     font-family: 'Montserrat', sans-serif;
@@ -222,7 +229,7 @@ nav {
     line-height: 30px;
 }
 
-.navbar-default < #navSearchBar{
+.navbar-default > #navSearchBar{
     line-height: 30px;
 }
 
